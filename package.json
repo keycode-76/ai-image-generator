@@ -1,0 +1,35 @@
+{
+  "name": "ai-image-generator",
+  "version": "1.0.0",
+  "description": "AI圖片生成網站",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "ai",
+    "image",
+    "generator",
+    "free",
+    "express",
+    "pollinations"
+  ],
+  "author": "EL",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "vite": "^4.5.14"
+  }
+}
