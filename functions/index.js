@@ -1,6 +1,5 @@
 const functions = require("firebase-functions");
-const stripe = require("stripe")
-// ("sk_test_51SI7Te2KKjbc3s12RAo0aO6LpMQg2X2q4j308FOtm3Drb9EwtpH6D1Rrg31fHKRRxiBhnOFn9EuLDdP1SaoBwAQY00JhTsEr0N");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
 exports.createCheckoutSession = functions.https.onRequest(async (req, res) => {
   // ✅ 手動處理 CORS（這三個 header 必須在所有情況下都加）
