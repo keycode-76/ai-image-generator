@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>genhorror.ai test</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="免費、無限制的AI圖片生成器，無需註冊，立即將您的想法轉化為精美圖像。">
+    
+    <!-- Google Analytics - 暫時註釋，等有正確ID再啟用 -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>GenHorror.ai</h1>
+        </div>
+        <div class="header-controls">
+            <div class="language-switcher">
+                <select id="language-select">
+                    <option value="en" data-text="English">🇺🇸 English</option>
+                    <option value="es" data-text="Español">🇪🇸 Español</option>
+                    <option value="de" data-text="Deutsch">🇩🇪 Deutsch</option>
+                    <option value="ja" data-text="日本語">🇯🇵 日本語</option>
+                    <option value="zh" data-text="中文">🇨🇳 中文</option>
+                </select>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" data-theme="light" title="白色主題"><i class="fas fa-sun"></i></button>
+                <button class="theme-btn" data-theme="dark" title="深黑色主題"><i class="fas fa-moon"></i></button>
+                <button class="theme-btn" data-theme="blue" title="深藍色主題"><i class="fas fa-water"></i></button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" data-translate="首頁">首頁</a></li>
+                <li><a href="#gallery" data-translate="畫廊">畫廊</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button id="login-btn" class="btn-secondary" data-translate="登入">登入</button>
+            <button id="signup-btn" class="btn-primary" data-translate="註冊">註冊</button>
+            <button id="pay-button">升級為 Premium</button>
+
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+            document.getElementById("pay-button").addEventListener("click", async () => {
+              try {
+                console.log('Starting payment process...');
+                
+                // 使用 Firebase Callable Function
+                const createCheckoutSession = firebase.functions().httpsCallable('createCheckoutSession');
+                const result = await createCheckoutSession({});
+                
+                const data = result.data;
+                console.log('Checkout session created:', data);
+                
+                // 重定向到 Stripe Checkout
+                if (data.url) {
+                  window.location.href = data.url;
+                } else {
+                  throw new Error('No checkout URL received from server');
+                }
+              } catch (err) {
+                console.error('Payment error:', err);
+                alert("支付過程中發生錯誤：" + err.message);
+              }
+            });
+        </script>
+
+            <!-- 用戶信息將在這裡動態顯示 -->
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2 data-translate="將您的想法轉化為精美圖像">將您的想法轉化為精美圖像</h2>
+            <p data-translate="免費、無限制、無需註冊，立即開始創作！">免費、無限制、無需註冊，立即開始創作！</p>
+        </div>
+    </section>
+
+    <section class="generator">
+        <div class="container">
+            <div class="generator-container">
+                <div class="prompt-container">
+                    <h3 data-translate="描述您想要的圖像">描述您想要的圖像</h3>
+                    <textarea id="prompt" placeholder="例如：黑暗機械戰士，賽博朋克風格"></textarea>
+                    
+                    <div class="settings">
+                        <div class="setting">
+                            <label for="style" data-translate="風格">風格</label>
+                            <select id="style">
+                                <option value="core">Core Style</option>
+                                <option value="retro-pixel">Retro Pixel</option>
+                                <option value="cyberpunk">Cyberpunk</option>
+                                <option value="slasher">80's Slasher</option>
+                            </select>
+                        </div>
+                        <div class="setting">
+                            <label for="aspect-ratio" data-translate="比例">比例</label>
+                            <select id="aspect-ratio">
+                                <option value="1:1">1:1 (正方形)</option>
+                                <option value="16:9">16:9 (寬屏)</option>
+                                <option value="9:16">9:16 (垂直)</option>
+                                <option value="4:3">4:3 (標準)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-btn" class="btn-primary" data-translate="生成圖像">生成圖像</button>
+                </div>
+                
+                <div class="result-container">
+                    <div id="loading" class="hidden">
+                        <div class="spinner"></div>
+                        <p data-translate="正在生成您的圖像...">正在生成您的圖像...</p>
+                    </div>
+                    <div id="result" class="hidden">
+                        <!-- 圖片將在這裡動態生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 data-translate="靈感畫廊">靈感畫廊</h2>
+            <p data-translate="瀏覽其他用戶創建的精美圖像，獲取創作靈感">瀏覽其他用戶創建的精美圖像，獲取創作靈感</p>
+            
+            <div class="gallery-grid">
+                <!-- 這裡將動態加載畫廊圖片 -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p data-translate="&copy; 2024 AI 圖片生成器。保留所有權利。">&copy; 2024 GenHorror.ai。保留所有權利。</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 登入模態框 -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 data-translate="登入">登入</h2>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="email-login">郵件登入</button>
+                <button class="tab-btn" data-tab="google-login">Google 登入</button>
+            </div>
+            
+            <!-- 郵件登入表單 -->
+            <div id="email-login" class="tab-content active">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" data-translate="電子郵件">電子郵件</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" data-translate="密碼">密碼</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary" data-translate="登入">登入</button>
+                </form>
+            </div>
+            
+            <!-- Google 登入 -->
+            <div id="google-login" class="tab-content">
+                <div class="google-login-section">
+                    <button id="google-login-btn" class="google-btn">
+                        <i class="fab fa-google"></i>
+                        <span data-translate="使用 Google 登入">使用 Google 登入</span>
+                    </button>
+                </div>
+            </div>
+            
+            <p class="form-footer" data-translate="還沒有帳號？">還沒有帳號？<a href="#" id="switch-to-signup" data-translate="立即註冊">立即註冊</a></p>
+        </div>
+    </div>
+
+    <!-- 註冊模態框 -->
+    <div id="signup-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 data-translate="註冊">註冊</h2>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="email-signup">郵件註冊</button>
+                <button class="tab-btn" data-tab="google-signup">Google 註冊</button>
+            </div>
+            
+            <!-- 郵件註冊表單 -->
+            <div id="email-signup" class="tab-content active">
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="signup-name" data-translate="用戶名">用戶名</label>
+                        <input type="text" id="signup-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email" data-translate="電子郵件">電子郵件</label>
+                        <input type="email" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password" data-translate="密碼">密碼</label>
+                        <input type="password" id="signup-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password" data-translate="確認密碼">確認密碼</label>
+                        <input type="password" id="signup-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary" data-translate="註冊">註冊</button>
+                </form>
+            </div>
+            
+            <!-- Google 註冊 -->
+            <div id="google-signup" class="tab-content">
+                <div class="google-login-section">
+                    <button id="google-signup-btn" class="google-btn">
+                        <i class="fab fa-google"></i>
+                        <span data-translate="使用 Google 註冊">使用 Google 註冊</span>
+                    </button>
+                </div>
+            </div>
+            
+            <p class="form-footer" data-translate="已有帳號？">已有帳號？<a href="#" id="switch-to-login" data-translate="立即登入">立即登入</a></p>
+        </div>
+    </div>
+
+    <!-- 用戶面板模態框 -->
+    <div id="user-panel-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 data-translate="用戶面板">用戶面板</h2>
+            <div class="user-info">
+                <div class="user-avatar-section">
+                    <img id="user-avatar" src="" alt="用戶頭像" class="user-avatar">
+                    <div>
+                        <p data-translate="歡迎回來">歡迎回來！</p>
+                        <p><strong id="user-name"></strong></p>
+                        <p id="user-email" class="user-email"></p>
+                    </div>
+                </div>
+                
+                <div class="user-stats">
+                    <h4 data-translate="生成統計">生成統計</h4>
+                    <div id="user-stats">
+                        <!-- 統計信息將在這裡動態顯示 -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="user-history">
+                <h4 data-translate="最近生成記錄">最近生成記錄</h4>
+                <div id="history-list" class="history-list">
+                    <!-- 歷史記錄將在這裡動態顯示 -->
+                </div>
+            </div>
+            
+            <div class="user-actions">
+                <button id="logout-btn" class="btn-secondary" data-translate="登出">登出</button>
+                <button id="buy-credits-btn" class="btn-primary" data-translate="升級專業版">升級專業版</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // Firebase 配置
+        const firebaseConfig = {
+            apiKey: "AIzaSyAOHl-sJQYR0yWFaYC3uY7dXWyBDvnUhXY",
+            authDomain: "genhorror-60.firebaseapp.com",
+            projectId: "genhorror-60",
+            storageBucket: "genhorror-60.firebasestorage.app",
+            messagingSenderId: "1003552555411",
+            appId: "1:1003552555411:web:94258908d0922d815ea866",
+            measurementId: "G-PMHYHX2R72"
+        };
+        
+        // 初始化 Firebase
+        firebase.initializeApp(firebaseConfig);
+        console.log('Firebase 初始化完成！');
+    </script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

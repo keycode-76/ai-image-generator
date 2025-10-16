@@ -12,7 +12,7 @@ const regenerateBtn = document.getElementById('regenerate-btn');
 const galleryGrid = document.querySelector('.gallery-grid');
 const themeButtons = document.querySelectorAll('.theme-btn');
 const languageSelect = document.getElementById('language-select');
-// document.addEventListener('DOMContentLoaded', () => {
+// updateUIForLoggedInUser
 // 認證相關元素
 const loginBtn = document.getElementById('login-btn');
 const signupBtn = document.getElementById('signup-btn');

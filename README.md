@@ -108,6 +108,14 @@ project01/
 ├── start.sh           # Linux/Mac 啟動腳本
 └── README.md          # 說明文檔
 ```
+project01/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js              # ✅ 唯一的 JS 文件
+├── firebase.json
+└── .firebaserc
 
 ## 注意事項
 
