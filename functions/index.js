@@ -18,7 +18,7 @@ try {
   }
 } catch (error) {
   // 如果讀取失敗，使用環境變數或備用金鑰
-  stripeSecret = process.env.STRIPE_SECRET_KEY || "sk_test_51SI7Te2KKjbc3s12RAo0aO6LpMQg2X2q4j308FOtm3Drb9EwtpH6D1Rrg31fHKRRxiBhnOFn9EuLDdP1SaoBwAQY00JhTsEr0N";
+  stripeSecret = process.env.STRIPE_SECRET_KEY || "YOUR_STRIPE_SECRET_KEY_HERE";
   console.log("✅ 使用環境變數/備用 Stripe 金鑰");
 }
 
