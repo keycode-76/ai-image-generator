@@ -44,14 +44,18 @@ app.post('/api/generate', async (req, res) => {
         // 編碼提示詞
         const encodedPrompt = encodeURIComponent(enhancedPrompt);
         
-        // 生成3張不同的圖片
-        const imageUrls = [
-            `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&seed=1`,
-            `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&seed=2`,
-            `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&seed=3`
-        ];
+        // 🔧 圖片生成數量配置 - 與前端和後端保持一致
+        const IMAGES_TO_GENERATE = 1; // 設置要生成的圖片數量 (1-4 張)
+        
+        // 根據配置生成指定數量的圖片
+        const imageUrls = [];
+        for (let i = 1; i <= IMAGES_TO_GENERATE; i++) {
+            imageUrls.push(
+                `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&seed=${i}`
+            );
+        }
 
-        console.log('生成成功:', imageUrls.length, '張圖片');
+        console.log(`生成成功: ${imageUrls.length} 張圖片`);
 
         res.json({
             success: true,

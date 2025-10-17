@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>genhorror.ai test</title>
+    <title>GenFred.ai</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta name="description" content="免費、無限制的AI圖片生成器，無需註冊，立即將您的想法轉化為精美圖像。">
+    <meta name="description" content="恐怖圖片生成網">
     
     <!-- Google Analytics - 暫時註釋，等有正確ID再啟用 -->
     <!--
@@ -23,66 +23,36 @@
 <body>
     <header>
         <div class="logo">
-            <h1>GenHorror.ai</h1>
+            <img src="logo.png" alt="GenHorror.ai" class="logo-image">
         </div>
-        <div class="header-controls">
-            <div class="language-switcher">
-                <select id="language-select">
-                    <option value="en" data-text="English">🇺🇸 English</option>
-                    <option value="es" data-text="Español">🇪🇸 Español</option>
-                    <option value="de" data-text="Deutsch">🇩🇪 Deutsch</option>
-                    <option value="ja" data-text="日本語">🇯🇵 日本語</option>
-                    <option value="zh" data-text="中文">🇨🇳 中文</option>
-                </select>
-            </div>
-            <div class="theme-switcher">
-                <button class="theme-btn" data-theme="light" title="白色主題"><i class="fas fa-sun"></i></button>
-                <button class="theme-btn" data-theme="dark" title="深黑色主題"><i class="fas fa-moon"></i></button>
-                <button class="theme-btn" data-theme="blue" title="深藍色主題"><i class="fas fa-water"></i></button>
-            </div>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active" data-translate="首頁">首頁</a></li>
-                <li><a href="#gallery" data-translate="畫廊">畫廊</a></li>
-            </ul>
-        </nav>
-        <div class="auth-buttons">
-            <button id="login-btn" class="btn-secondary" data-translate="登入">登入</button>
-            <button id="signup-btn" class="btn-primary" data-translate="註冊">註冊</button>
-            <button id="pay-button">升級為 Premium</button>
-
-        <script src="https://js.stripe.com/v3/"></script>
-        <script>
-            document.getElementById("pay-button").addEventListener("click", async () => {
-              try {
-                console.log('Starting payment process...');
-                
-                // 使用 Firebase Callable Function
-                const createCheckoutSession = firebase.functions().httpsCallable('createCheckoutSession');
-                const result = await createCheckoutSession({});
-                
-                const data = result.data;
-                console.log('Checkout session created:', data);
-                
-                // 重定向到 Stripe Checkout
-                if (data.url) {
-                  window.location.href = data.url;
-                } else {
-                  throw new Error('No checkout URL received from server');
-                }
-              } catch (err) {
-                console.error('Payment error:', err);
-                alert("支付過程中發生錯誤：" + err.message);
-              }
-            });
-        </script>
+        
+        <button class="hamburger-menu" id="hamburgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <nav class="nav-links" id="navLinks">
+            <a href="#" class="active" data-translate="首頁">首頁</a>
+            <a href="#gallery" data-translate="畫廊">畫廊</a>
+            
+            <select class="language-select" id="language-select">
+                <option value="en" data-text="English">🇺🇸 English</option>
+                <option value="es" data-text="Español">🇪🇸 Español</option>
+                <option value="de" data-text="Deutsch">🇩🇪 Deutsch</option>
+                <option value="ja" data-text="日本語">🇯🇵 日本語</option>
+                <option value="zh" data-text="中文">🇨🇳 中文</option>
+            </select>
+            
+            <button id="login-btn" class="btn-login" data-translate="登入">登入</button>
+            <button id="pay-button" class="btn-premium">升級為 Premium</button>
 
             <!-- 用戶信息將在這裡動態顯示 -->
-        </div>
+        </nav>
     </header>
 
     <section class="hero">
+        <img src="src/01-hero.jpg" alt="Hero Background" class="hero-bg">
         <div class="container">
             <h2 data-translate="將您的想法轉化為精美圖像">將您的想法轉化為精美圖像</h2>
             <p data-translate="免費、無限制、無需註冊，立即開始創作！">免費、無限制、無需註冊，立即開始創作！</p>
@@ -96,37 +66,76 @@
                     <h3 data-translate="描述您想要的圖像">描述您想要的圖像</h3>
                     <textarea id="prompt" placeholder="例如：黑暗機械戰士，賽博朋克風格"></textarea>
                     
-                    <div class="settings">
-                        <div class="setting">
-                            <label for="style" data-translate="風格">風格</label>
-                            <select id="style">
-                                <option value="core">Core Style</option>
-                                <option value="retro-pixel">Retro Pixel</option>
-                                <option value="cyberpunk">Cyberpunk</option>
-                                <option value="slasher">80's Slasher</option>
-                            </select>
+                    <div class="input-group">
+                        <label data-translate="風格">風格</label>
+                        <div class="style-grid" id="styleGrid">
+                            <div class="style-card" data-style="retro">
+                                <div class="style-card-image">
+                                    <img src="src/retro.jpg" alt="Retro Style" class="style-img">
+                                </div>
+                                <div class="style-card-label">Retro</div>
+                            </div>
+                            <div class="style-card" data-style="retro-pixel">
+                                <div class="style-card-image">
+                                    <img src="src/pixel.jpg" alt="Pixel Style" class="style-img">
+                                </div>
+                                <div class="style-card-label">Pixel</div>
+                            </div>
+                            <div class="style-card" data-style="cyberpunk">
+                                <div class="style-card-image">
+                                    <img src="src/cyberpunk.jpg" alt="Cyberpunk Style" class="style-img">
+                                </div>
+                                <div class="style-card-label">Cyberpunk</div>
+                            </div>
+                            <div class="style-card" data-style="slasher">
+                                <div class="style-card-image">
+                                    <img src="src/80s slasher.jpg" alt="80s Slasher Style" class="style-img">
+                                </div>
+                                <div class="style-card-label">80's Slasher</div>
+                            </div>
                         </div>
-                        <div class="setting">
-                            <label for="aspect-ratio" data-translate="比例">比例</label>
-                            <select id="aspect-ratio">
-                                <option value="1:1">1:1 (正方形)</option>
-                                <option value="16:9">16:9 (寬屏)</option>
-                                <option value="9:16">9:16 (垂直)</option>
-                                <option value="4:3">4:3 (標準)</option>
-                            </select>
-                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="aspect-ratio" data-translate="圖片尺寸">圖片尺寸</label>
+                        <select id="aspect-ratio" class="input-select">
+                            <option value="1:1">1:1 (正方形)</option>
+                            <option value="16:9">16:9 (寬屏)</option>
+                            <option value="9:16">9:16 (垂直)</option>
+                            <option value="4:3">4:3 (標準)</option>
+                        </select>
                     </div>
                     
                     <button id="generate-btn" class="btn-primary" data-translate="生成圖像">生成圖像</button>
                 </div>
                 
-                <div class="result-container">
-                    <div id="loading" class="hidden">
-                        <div class="spinner"></div>
-                        <p data-translate="正在生成您的圖像...">正在生成您的圖像...</p>
+                <div class="generator-preview">
+                    <div class="preview-header" data-translate="預覽">預覽</div>
+                    
+                    <div class="preview-container">
+                        <div id="loading" class="hidden">
+                            <div class="spinner"></div>
+                            <p data-translate="正在生成您的圖像...">正在生成您的圖像...</p>
+                        </div>
+                        
+                        <!-- Circle Loading -->
+                        <div id="countdown-container" class="countdown-container hidden">
+                            <div class="circle-loader"></div>
+                            <p data-translate="圖片生成中...">圖片生成中...</p>
+                        </div>
+                        
+                        <div id="result" class="hidden">
+                            <!-- 單張圖片將在這裡動態生成 -->
+                        </div>
+                        
+                        <div class="preview-placeholder" id="preview-placeholder">
+                            <p data-translate="點擊「生成圖片」開始創作">點擊「生成圖片」開始創作</p>
+                        </div>
                     </div>
-                    <div id="result" class="hidden">
-                        <!-- 圖片將在這裡動態生成 -->
+                    
+                    <div class="preview-actions">
+                        <button class="btn-download" id="download-btn">⬇ 下載</button>
+                        <button class="btn-share" id="share-btn">📤 分享</button>
                     </div>
                 </div>
             </div>
@@ -161,34 +170,25 @@
             <span class="close">&times;</span>
             <h2 data-translate="登入">登入</h2>
             
-            <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="email-login">郵件登入</button>
-                <button class="tab-btn" data-tab="google-login">Google 登入</button>
-            </div>
-            
             <!-- 郵件登入表單 -->
-            <div id="email-login" class="tab-content active">
-                <form id="login-form">
-                    <div class="form-group">
-                        <label for="login-email" data-translate="電子郵件">電子郵件</label>
-                        <input type="email" id="login-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password" data-translate="密碼">密碼</label>
-                        <input type="password" id="login-password" required>
-                    </div>
-                    <button type="submit" class="btn-primary" data-translate="登入">登入</button>
-                </form>
-            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email" data-translate="電子郵件">電子郵件</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password" data-translate="密碼">密碼</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn-primary" data-translate="登入">登入</button>
+            </form>
             
             <!-- Google 登入 -->
-            <div id="google-login" class="tab-content">
-                <div class="google-login-section">
-                    <button id="google-login-btn" class="google-btn">
-                        <i class="fab fa-google"></i>
-                        <span data-translate="使用 Google 登入">使用 Google 登入</span>
-                    </button>
-                </div>
+            <div class="google-login-section">
+                <button id="google-login-btn" class="google-btn">
+                    <i class="fab fa-google"></i>
+                    <span data-translate="使用 Google 登入">使用 Google 登入</span>
+                </button>
             </div>
             
             <p class="form-footer" data-translate="還沒有帳號？">還沒有帳號？<a href="#" id="switch-to-signup" data-translate="立即註冊">立即註冊</a></p>
@@ -201,42 +201,33 @@
             <span class="close">&times;</span>
             <h2 data-translate="註冊">註冊</h2>
             
-            <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="email-signup">郵件註冊</button>
-                <button class="tab-btn" data-tab="google-signup">Google 註冊</button>
-            </div>
-            
             <!-- 郵件註冊表單 -->
-            <div id="email-signup" class="tab-content active">
-                <form id="signup-form">
-                    <div class="form-group">
-                        <label for="signup-name" data-translate="用戶名">用戶名</label>
-                        <input type="text" id="signup-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-email" data-translate="電子郵件">電子郵件</label>
-                        <input type="email" id="signup-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-password" data-translate="密碼">密碼</label>
-                        <input type="password" id="signup-password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-confirm-password" data-translate="確認密碼">確認密碼</label>
-                        <input type="password" id="signup-confirm-password" required>
-                    </div>
-                    <button type="submit" class="btn-primary" data-translate="註冊">註冊</button>
-                </form>
-            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name" data-translate="用戶名">用戶名</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email" data-translate="電子郵件">電子郵件</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password" data-translate="密碼">密碼</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password" data-translate="確認密碼">確認密碼</label>
+                    <input type="password" id="signup-confirm-password" required>
+                </div>
+                <button type="submit" class="btn-primary" data-translate="註冊">註冊</button>
+            </form>
             
             <!-- Google 註冊 -->
-            <div id="google-signup" class="tab-content">
-                <div class="google-login-section">
-                    <button id="google-signup-btn" class="google-btn">
-                        <i class="fab fa-google"></i>
-                        <span data-translate="使用 Google 註冊">使用 Google 註冊</span>
-                    </button>
-                </div>
+            <div class="google-login-section">
+                <button id="google-signup-btn" class="google-btn">
+                    <i class="fab fa-google"></i>
+                    <span data-translate="使用 Google 註冊">使用 Google 註冊</span>
+                </button>
             </div>
             
             <p class="form-footer" data-translate="已有帳號？">已有帳號？<a href="#" id="switch-to-login" data-translate="立即登入">立即登入</a></p>
@@ -284,6 +275,27 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-functions-compat.js"></script>
+    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // 靜默處理 Stripe 相關的 console 錯誤
+        window.addEventListener('error', function(e) {
+            if (e.message && e.message.includes('stripe')) {
+                console.log('ℹ️ Stripe 相關錯誤已靜默處理');
+                return true; // 阻止錯誤顯示
+            }
+        });
+        
+        // 處理未捕獲的 Promise 拒絕
+        window.addEventListener('unhandledrejection', function(e) {
+            if (e.reason && e.reason.toString().includes('stripe')) {
+                console.log('ℹ️ Stripe Promise 錯誤已靜默處理');
+                e.preventDefault();
+            }
+        });
+    </script>
     
     <script>
         // Firebase 配置
@@ -302,6 +314,7 @@
         console.log('Firebase 初始化完成！');
     </script>
 
+    <script src="js/translations.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

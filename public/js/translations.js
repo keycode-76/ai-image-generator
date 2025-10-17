@@ -9,9 +9,10 @@ const translations = {
         '登入': 'Login',
         '註冊': 'Sign Up',
         
+        
         // Hero Section
-        '將您的想法轉化為精美圖像': 'Transform Your Ideas into Beautiful Images',
-        '免費、無限制、無需註冊，立即開始創作！': 'Free, unlimited, no registration required. Start creating now!',
+        '將您的想法轉化為精美圖像': "Welcome to Fred's Image Generator",
+        '免費、無限制、無需註冊，立即開始創作！': 'Tell Fred what photo you want, and Fred’ll do its best to provide it. Don’t worry, Fred’s very friendly. If something unexpected happens, it’s just because ___, and besides, Fred can only stay here, right? Let’s start generating pics!',
         
         // Generator Section
         '描述您想要的圖像': 'Describe the image you want',
