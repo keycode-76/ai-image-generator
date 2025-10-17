@@ -862,35 +862,26 @@ window.initAuthFeatures = function() {
     
     // 登入按鈕
     const loginBtn = document.getElementById('login-btn');
+    // 在 initEventListeners 函數中修改登入按鈕事件
     if (loginBtn) {
-        console.log('✅ [全局] 找到登入按鈕，添加事件監聽器');
-        console.log('🔍 [全局] 登入按鈕元素:', loginBtn);
-        console.log('🔍 [全局] 登入按鈕類別:', loginBtn.className);
-        console.log('🔍 [全局] 登入按鈕文字:', loginBtn.textContent);
+        console.log('✅ 找到登入按鈕，添加事件監聽器');
         
         loginBtn.addEventListener('click', function(event) {
-            console.log('🖱️ [全局] 登入按鈕被點擊！');
-            console.log('📊 [全局] 點擊事件詳情:', {
-                type: event.type,
-                target: event.target,
-                currentTarget: event.currentTarget,
-                timestamp: new Date().toISOString()
-            });
-            
-            const loginModal = document.getElementById('login-modal');
-            console.log('🔍 [全局] 檢查 loginModal 元素:', loginModal);
+            console.log('🖱️ 登入按鈕被點擊！');
             
             if (loginModal) {
-                console.log('📱 [全局] 顯示登入模態框');
-                console.log('🔍 [全局] 模態框當前樣式:', loginModal.style.display);
-                console.log('🔍 [全局] 模態框類別:', loginModal.className);
+                console.log('📱 顯示登入模態框');
                 
-                // 移除 hidden 類別來顯示模態框
+                // 方案1: 使用 display 屬性（確保顯示）
+                loginModal.style.display = 'block';
+                
+                // 方案2: 同時移除 hidden 類並設置 display
                 loginModal.classList.remove('hidden');
-                console.log('✅ [全局] 模態框顯示設置完成（移除 hidden 類別）');
-                console.log('🔍 [全局] 設置後類別:', loginModal.className);
+                loginModal.style.display = 'block';
+                
+                console.log('✅ 模態框顯示設置完成');
             } else {
-                console.error('❌ [全局] loginModal 元素未找到！');
+                console.error('❌ loginModal 元素未找到！');
             }
         });
     } else {
