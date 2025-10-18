@@ -3,46 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenFeer.ai</title>
+    <title>GenFred.ai</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <meta name="description" content="GenFeer.ai 價格方案">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="https://genfeer-ai.web.app/">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
                 <img src="logo.png" alt="GenHorror.ai" class="logo-image">
-            </a>
+                <nav class="nav-links">
+                    
+                    <select class="language-select" id="language-select">
+                        <option value="en" data-text="English">🇺🇸 English</option>
+                        <option value="es" data-text="Español">🇪🇸 Español</option>
+                        <option value="de" data-text="Deutsch">🇩🇪 Deutsch</option>
+                        <option value="ja" data-text="日本語">🇯🇵 日本語</option>
+                        <option value="zh" data-text="中文">🇨🇳 中文</option>
+                    </select>
+                    
+                    <button id="login-btn" class="btn-login" data-translate="登入">登入</button>
+                </nav>
+            </div>
         </div>
-        
-        <button class="hamburger-menu" id="hamburgerMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <nav class="nav-links" id="navLinks">
-            <a href="https://genfeer-ai.web.app/" data-translate="首頁">首頁</a>
-            <a href="https://genfeer-ai.web.app/#gallery" data-translate="畫廊">畫廊</a>
-            
-            <select class="language-select" id="language-select">
-                <option value="en" data-text="English">🇺🇸 English</option>
-                <option value="es" data-text="Español">🇪🇸 Español</option>
-                <option value="de" data-text="Deutsch">🇩🇪 Deutsch</option>
-                <option value="ja" data-text="日本語">🇯🇵 日本語</option>
-                <option value="zh" data-text="中文" selected>🇨🇳 中文</option>
-            </select>
-            
-            <button id="login-btn" class="btn-login" data-translate="登入">登入</button>
-            <button id="pay-button" class="btn-premium" data-translate="升級方案">升級方案</button>
-
-            <!-- 用戶信息將在這裡動態顯示 -->
-        </nav>
     </header>
 
-    
+    <!-- Hero Section -->
+    <section class="pricing-hero">
+        <div class="container">
+            <h1 data-translate="選擇最適合您的方案">選擇最適合您的方案</h1>
+            <p data-translate="解鎖 AI 圖片生成的無限可能">解鎖 AI 圖片生成的無限可能</p>
+        </div>
+    </section>
 
     <!-- Pricing Plans -->
     <section class="pricing-plans">
@@ -61,8 +55,10 @@
                     </div>
                     <div class="plan-features">
                         <ul>
-                            <li data-translate="每月 2 張圖片">每月 2 張圖片</li>
-                            <li data-translate="低解析度">低解析度</li>
+                            <li data-translate="每日 2 張圖片">每日 2 張圖片</li>
+                            <li data-translate="512x512 解析度">512x512 解析度</li>
+                            <li data-translate="基礎模型">基礎模型</li>
+                            <li data-translate="10 種風格">10 種風格</li>
                             <li data-translate="有水印">有水印</li>
                         </ul>
                     </div>
@@ -85,9 +81,13 @@
                     </div>
                     <div class="plan-features">
                         <ul>
-                            <li data-translate="每月 1000 張圖片">每月 1000 張圖片</li>
-                            <li data-translate="中高解析度">中高解析度</li>
+                            <li data-translate="每日 1000 張圖片">每日 1000 張圖片</li>
+                            <li data-translate="1024x1024 解析度">1024x1024 解析度</li>
+                            <li data-translate="基礎+進階模型">基礎+進階模型</li>
+                            <li data-translate="50 種風格">50 種風格</li>
                             <li data-translate="無水印">無水印</li>
+                            <li data-translate="10GB 儲存">10GB 儲存</li>
+                            <li data-translate="30天歷史">30天歷史</li>
                         </ul>
                     </div>
                     <div class="plan-action">
@@ -109,8 +109,14 @@
                     <div class="plan-features">
                         <ul>
                             <li data-translate="無限生成">無限生成</li>
-                            <li data-translate="自定義解析度">自定義解析度</li>
+                            <li data-translate="2048x2048 解析度">2048x2048 解析度</li>
+                            <li data-translate="所有模型">所有模型</li>
+                            <li data-translate="100+ 種風格">100+ 種風格</li>
                             <li data-translate="無水印">無水印</li>
+                            <li data-translate="100GB 儲存">100GB 儲存</li>
+                            <li data-translate="90天歷史">90天歷史</li>
+                            <li data-translate="批量生成">批量生成</li>
+                            <li data-translate="進階編輯">進階編輯</li>
                         </ul>
                     </div>
                     <div class="plan-action">
@@ -118,6 +124,35 @@
                     </div>
                 </div>
 
+                <!-- Pro Plan -->
+                <div class="pricing-card">
+                    <div class="plan-name">
+                        <h3 data-translate="專業">專業</h3>
+                        <p data-translate="適合企業用戶">適合企業用戶</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-amount">599</span>
+                        <span class="price-currency">NT$</span>
+                        <span class="price-period">/月</span>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li data-translate="無限生成">無限生成</li>
+                            <li data-translate="4096x4096 解析度">4096x4096 解析度</li>
+                            <li data-translate="所有+獨家模型">所有+獨家模型</li>
+                            <li data-translate="無限自訂風格">無限自訂風格</li>
+                            <li data-translate="無水印">無水印</li>
+                            <li data-translate="1TB 儲存">1TB 儲存</li>
+                            <li data-translate="永久歷史">永久歷史</li>
+                            <li data-translate="專業編輯工具">專業編輯工具</li>
+                            <li data-translate="無限 API">無限 API</li>
+                            <li data-translate="24小時支援">24小時支援</li>
+                        </ul>
+                    </div>
+                    <div class="plan-action">
+                        <button class="btn-primary" onclick="subscribePlan('pro')" data-translate="開始使用">開始使用</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -134,26 +169,58 @@
                             <th class="plan-column" data-translate="免費">免費</th>
                             <th class="plan-column" data-translate="基本">基本</th>
                             <th class="plan-column" data-translate="進階">進階</th>
+                            <th class="plan-column" data-translate="專業">專業</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="feature-name" data-translate="每月生成數量">每月生成數量</td>
+                            <td class="feature-name" data-translate="每日生成數量">每日生成數量</td>
                             <td class="feature-value">2張</td>
                             <td class="feature-value">1000張</td>
+                            <td class="feature-value" data-translate="無限">無限</td>
                             <td class="feature-value" data-translate="無限">無限</td>
                         </tr>
                         <tr>
                             <td class="feature-name" data-translate="圖片解析度">圖片解析度</td>
-                            <td class="feature-value" data-translate="低解析度">低解析度</td>
-                            <td class="feature-value" data-translate="中高解析度">中高解析度</td>
-                            <td class="feature-value" data-translate="自定義解析度">自定義解析度</td>
+                            <td class="feature-value">512×512</td>
+                            <td class="feature-value">1024×1024</td>
+                            <td class="feature-value">2048×2048</td>
+                            <td class="feature-value">4096×4096</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name" data-translate="支援模型">支援模型</td>
+                            <td class="feature-value" data-translate="基礎">基礎</td>
+                            <td class="feature-value" data-translate="基礎+進階">基礎+進階</td>
+                            <td class="feature-value" data-translate="所有">所有</td>
+                            <td class="feature-value" data-translate="所有+獨家">所有+獨家</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name" data-translate="風格選擇">風格選擇</td>
+                            <td class="feature-value">10種</td>
+                            <td class="feature-value">50種</td>
+                            <td class="feature-value">100+種</td>
+                            <td class="feature-value" data-translate="無限">無限</td>
                         </tr>
                         <tr>
                             <td class="feature-name" data-translate="水印">水印</td>
                             <td class="feature-value" data-translate="有">有</td>
                             <td class="feature-value" data-translate="無">無</td>
                             <td class="feature-value" data-translate="無">無</td>
+                            <td class="feature-value" data-translate="無">無</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name" data-translate="儲存空間">儲存空間</td>
+                            <td class="feature-value">100MB</td>
+                            <td class="feature-value">10GB</td>
+                            <td class="feature-value">100GB</td>
+                            <td class="feature-value">1TB</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name" data-translate="歷史記錄">歷史記錄</td>
+                            <td class="feature-value">7天</td>
+                            <td class="feature-value">30天</td>
+                            <td class="feature-value">90天</td>
+                            <td class="feature-value" data-translate="永久">永久</td>
                         </tr>
                     </tbody>
                 </table>
@@ -295,13 +362,31 @@
         </div>
     </div>
 
-    <!-- Stripe -->
+    <!-- JavaScript -->
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script>
-        // Stripe 配置
-        const stripe = Stripe('pk_test_51234567890abcdef');
+        // Firebase 配置
+        const firebaseConfig = {
+            apiKey: "AIzaSyAO9j3fqIuuwwf2znCBba1af7SW6Be7Tn4",
+            authDomain: "genfeer-ai.firebaseapp.com",
+            projectId: "genfeer-ai",
+            storageBucket: "genfeer-ai.firebasestorage.app",
+            messagingSenderId: "788596046031",
+            appId: "1:788596046031:web:ff880f82c1d1d727bddfba",
+            measurementId: "G-514SH5LEKK"
+        };
         
-        // 訂閱方案函數
+        // 初始化 Firebase
+        firebase.initializeApp(firebaseConfig);
+        const functions = firebase.functions();
+        const auth = firebase.auth();
+
+        // Stripe 訂閱功能
         async function subscribePlan(planType) {
             try {
                 console.log('開始訂閱方案:', planType);
@@ -311,7 +396,7 @@
                 switch(planType) {
                     case 'basic':
                         priceData = {
-                            name: 'GenFeer.ai 基本方案',
+                            name: 'GenHorror.ai 基本方案',
                             description: '每月 NT$99，適合個人創作者',
                             unit_amount: 9900,
                             currency: 'twd'
@@ -319,9 +404,17 @@
                         break;
                     case 'advanced':
                         priceData = {
-                            name: 'GenFeer.ai 進階方案',
+                            name: 'GenHorror.ai 進階方案',
                             description: '每月 NT$299，適合專業創作者',
                             unit_amount: 29900,
+                            currency: 'twd'
+                        };
+                        break;
+                    case 'pro':
+                        priceData = {
+                            name: 'GenHorror.ai 專業方案',
+                            description: '每月 NT$599，適合企業用戶',
+                            unit_amount: 59900,
                             currency: 'twd'
                         };
                         break;
@@ -330,7 +423,7 @@
                 }
 
                 // 調用 Firebase Function 創建 Stripe Checkout Session
-                const createCheckoutSession = firebase.functions().httpsCallable('createCheckoutSessionV2');
+                const createCheckoutSession = functions.httpsCallable('createCheckoutSessionV2');
                 const result = await createCheckoutSession({
                     planType: planType,
                     priceData: priceData
@@ -350,115 +443,14 @@
         // 初始化頁面
         document.addEventListener('DOMContentLoaded', function() {
             console.log('付費頁面初始化完成');
+            
+            // 調用 script.js 中的認證功能
+            if (window.initAuthFeatures) {
+                window.initAuthFeatures();
+            } else {
+                console.error('initAuthFeatures 函數未找到');
+            }
         });
     </script>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    
-    <script>
-        // Firebase 配置
-        const firebaseConfig = {
-            apiKey: "AIzaSyAO9j3fqIuuwwf2znCBba1af7SW6Be7Tn4",
-            authDomain: "genfeer-ai.firebaseapp.com",
-            projectId: "genfeer-ai",
-            storageBucket: "genfeer-ai.firebasestorage.app",
-            messagingSenderId: "788596046031",
-            appId: "1:788596046031:web:ff880f82c1d1d727bddfba",
-            measurementId: "G-514SH5LEKK"
-        };
-        
-        // 初始化 Firebase
-        firebase.initializeApp(firebaseConfig);
-        console.log('Firebase 初始化完成！');
-        
-        // 測試 Firebase Auth 是否可用
-        console.log('Firebase Auth 可用:', !!firebase.auth);
-        console.log('Firebase Auth 方法:', Object.keys(firebase.auth()));
-        
-        // 【重要】設置持久化 - 必須在初始化後立即設置
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                console.log('✅ Firebase 持久化設置完成');
-            })
-            .catch((error) => {
-                console.error('❌ Firebase 持久化設置失敗:', error);
-            });
-        
-        // 【最重要】在任何 DOM 事件之前處理 redirect
-        // 這確保 getRedirectResult 在頁面加載時立即檢查
-        let redirectUser = null;
-        
-        firebase.auth().getRedirectResult()
-            .then((result) => {
-                console.log('✅ Redirect 檢查完成');
-                if (result.user) {
-                    console.log('⭐ 從 Google 重定向登入成功:', result.user.email);
-                    redirectUser = result.user;
-                    // 保存到全局變數供 script.js 使用
-                    window.redirectUser = result.user;
-                } else {
-                    console.log('ℹ️ 沒有 redirect 用戶');
-                }
-            })
-            .catch((error) => {
-                console.error('❌ Redirect 檢查失敗:', error);
-            });
-    </script>
-
-    <!-- 用戶面板模態框 -->
-    <div id="user-panel-modal" class="modal hidden">
-        <div class="user-panel-content">
-            <span class="close">&times;</span>
-            
-            <!-- 用戶頭像和基本信息 -->
-            <div class="user-header">
-                <div class="user-avatar-section">
-                    <img id="user-avatar" src="" alt="用戶頭像" class="user-avatar">
-                    <div class="user-details">
-                        <div class="user-name-section">
-                            <span id="user-name" class="user-name"></span>
-                            <button class="edit-btn" data-translate="修改">修改</button>
-                        </div>
-                        <div class="user-email-section">
-                            <span id="user-email" class="user-email"></span>
-                            <button class="edit-btn" data-translate="修改">修改</button>
-                        </div>
-                    </div>
-                </div>
-                <button id="buy-credits-btn" class="upgrade-btn" data-translate="升級方案">升級方案</button>
-            </div>
-            
-            <!-- 分隔線 -->
-            <div class="divider"></div>
-            
-            <!-- 方案信息 -->
-            <div class="subscription-info">
-                <div class="info-item">
-                    <span class="info-label" data-translate="方案">方案</span>
-                    <span id="current-plan" class="plan-badge">免費</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label" data-translate="生成數量">生成數量</span>
-                    <span id="generation-count" class="count-info">0/2</span>
-                </div>
-            </div>
-            
-            <!-- 分隔線 -->
-            <div class="divider"></div>
-            
-            <!-- 用戶操作 -->
-            <div class="user-actions">
-                <button id="change-password-btn" class="action-btn" data-translate="修改密碼">修改密碼</button>
-                <button id="delete-account-btn" class="action-btn danger" data-translate="刪除帳號">刪除帳號</button>
-                <button id="logout-btn" class="action-btn logout" data-translate="登出">登出</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="js/translations.js"></script>
-    <script src="js/script-clean.js?v=1"></script>
 </body>
 </html>
