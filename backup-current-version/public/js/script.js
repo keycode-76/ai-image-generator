@@ -1,8 +1,8 @@
-// 網站主要 JavaScript 邏輯
+.cssText// 網站主要 JavaScript 邏輯
 console.log('🚀 網站載入完成，開始初始化...');
 
 // 全局變數
-    let currentUser = null;
+let currentUser = null;
 
 // 通知函數
 function showNotice(message, type = 'info') {
@@ -59,10 +59,10 @@ function showNotice(message, type = 'info') {
     // 自動移除
     setTimeout(() => {
         notice.style.transform = 'translateX(100%)';
-    setTimeout(() => {
-        if (notice.parentNode) {
-            notice.parentNode.removeChild(notice);
-        }
+        setTimeout(() => {
+            if (notice.parentNode) {
+                notice.parentNode.removeChild(notice);
+            }
         }, 300);
     }, 3000);
 }
@@ -155,7 +155,7 @@ function initEventListeners() {
                     images: [
                         {
                             url: "https://via.placeholder.com/512x512/ff2828/ffffff?text=Generated+Image",
-                style: style,
+                            style: style,
                             prompt: prompt
                         }
                     ]
@@ -201,36 +201,36 @@ function initEventListeners() {
             resultElement.appendChild(imageContainer);
         });
     }
-        
-        // 生成按鈕
-        if (generateBtn && promptInput) {
-            generateBtn.addEventListener('click', generateImage);
-        }
-        
-        // 登入按鈕
-        if (loginBtn) {
+    
+    // 生成按鈕
+    if (generateBtn && promptInput) {
+        generateBtn.addEventListener('click', generateImage);
+    }
+    
+    // 登入按鈕
+    if (loginBtn) {
         console.log('登入按鈕事件監聽器已設置');
-            loginBtn.addEventListener('click', function(event) {
+        loginBtn.addEventListener('click', function(event) {
             console.log('登入按鈕被點擊');
-                if (loginModal) {
-                    loginModal.classList.remove('hidden');
+            if (loginModal) {
+                loginModal.classList.remove('hidden');
                 loginModal.classList.add('show');
                 console.log('登入模態框已顯示');
             }
         });
-        }
+    }
 
-        // Premium 按鈕
-        const payButton = document.getElementById('pay-button');
-        if (payButton) {
+    // Premium 按鈕
+    const payButton = document.getElementById('pay-button');
+    if (payButton) {
         console.log('升級方案按鈕事件監聽器已設置');
-            payButton.addEventListener('click', function(event) {
+        payButton.addEventListener('click', function(event) {
             event.preventDefault();
             console.log('升級方案按鈕被點擊');
             console.log('跳轉到 pricing.html');
-                    window.location.href = 'pricing.html';
-            });
-        } else {
+            window.location.href = 'pricing.html';
+        });
+    } else {
         console.log('❌ 找不到升級方案按鈕');
     }
     
@@ -265,9 +265,9 @@ function initEventListeners() {
             }
         });
     }
-        
-        // 登入表單
-        if (loginForm) {
+    
+    // 登入表單
+    if (loginForm) {
         console.log('🔍 檢查登入表單:', loginForm);
         console.log('✅ 登入表單事件監聽器已設置');
         
@@ -286,11 +286,11 @@ function initEventListeners() {
             });
         }
         
-            loginForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
             console.log('登入表單提交事件觸發');
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
             console.log('登入嘗試:', email);
             
             // 隱藏之前的錯誤訊息
@@ -318,10 +318,10 @@ function initEventListeners() {
                 const result = await firebase.auth().signInWithEmailAndPassword(email, password);
                 console.log('Firebase 登入成功！', result);
                 console.log('用戶信息:', result.user);
-                    loginModal.style.display = 'none';
-                    loginForm.reset();
-                    showNotice('登入成功！', 'success');
-                } catch (error) {
+                loginModal.style.display = 'none';
+                loginForm.reset();
+                showNotice('登入成功！', 'success');
+            } catch (error) {
                 // 根據錯誤代碼顯示具體的錯誤訊息
                 let errorMessage = '登入失敗';
                 
@@ -358,35 +358,35 @@ function initEventListeners() {
                     errorText.textContent = errorMessage;
                     errorElement.style.display = 'flex';
                 }
-                }
-            });
-        }
-        
-        // 註冊表單
-        if (signupForm) {
-            signupForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const name = document.getElementById('signup-name').value;
-                const email = document.getElementById('signup-email').value;
-                const password = document.getElementById('signup-password').value;
-                
+            }
+        });
+    }
+    
+    // 註冊表單
+    if (signupForm) {
+        signupForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
             // 檢查輸入是否有效
             if (!name || !email || !password) {
                 showNotice('請填寫所有欄位', 'warning');
-                    return;
-                }
-                
-                try {
+                return;
+            }
+            
+            try {
                 // 直接創建用戶帳號
                 console.log('開始創建用戶帳號...');
                 console.log('Email:', email);
                 console.log('Password length:', password.length);
-                    const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
                 console.log('用戶創建成功！', userCredential);
                 console.log('用戶信息:', userCredential.user);
-                    await userCredential.user.updateProfile({
-                        displayName: name
-                    });
+                await userCredential.user.updateProfile({
+                    displayName: name
+                });
                 console.log('用戶資料更新完成');
                 
                 // 關閉註冊 modal
@@ -396,25 +396,25 @@ function initEventListeners() {
                     signupModal.classList.add('hidden');
                 }
                 
-                    signupForm.reset();
-                    showNotice('註冊成功！', 'success');
-                } catch (error) {
-                    showNotice('註冊失敗: ' + error.message, 'error');
-                }
-            });
-        }
-        
+                signupForm.reset();
+                showNotice('註冊成功！', 'success');
+            } catch (error) {
+                showNotice('註冊失敗: ' + error.message, 'error');
+            }
+        });
+    }
+    
     // Google 登入按鈕 - 使用事件委派確保按鈕可用
     document.addEventListener('click', async function(e) {
         if (e.target && e.target.id === 'google-login-btn') {
             e.preventDefault();
-                try {
-                    const provider = new firebase.auth.GoogleAuthProvider();
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
                 await firebase.auth().signInWithRedirect(provider);
-                } catch (error) {
+            } catch (error) {
                 console.error('Google 登入錯誤:', error);
-                    showNotice('Google 登入失敗: ' + error.message, 'error');
-                }
+                showNotice('Google 登入失敗: ' + error.message, 'error');
+            }
         }
     });
     
@@ -422,30 +422,30 @@ function initEventListeners() {
     document.addEventListener('click', async function(e) {
         if (e.target && e.target.id === 'google-signup-btn') {
             e.preventDefault();
-                try {
-                    const provider = new firebase.auth.GoogleAuthProvider();
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
                 await firebase.auth().signInWithRedirect(provider);
-                } catch (error) {
+            } catch (error) {
                 console.error('Google 註冊錯誤:', error);
-                    showNotice('Google 註冊失敗: ' + error.message, 'error');
-                }
+                showNotice('Google 註冊失敗: ' + error.message, 'error');
+            }
         }
     });
-        
-        // 登出按鈕
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', async function() {
-                try {
-                    await firebase.auth().signOut();
-                    const userPanelModal = document.getElementById('user-panel-modal');
+    
+    // 登出按鈕
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async function() {
+            try {
+                await firebase.auth().signOut();
+                const userPanelModal = document.getElementById('user-panel-modal');
                 if (userPanelModal) userPanelModal.classList.add('hidden');
-                    showNotice('已登出', 'info');
-                } catch (error) {
-                    showNotice('登出失敗: ' + error.message, 'error');
-                }
-            });
-        }
-        
+                showNotice('已登出', 'info');
+            } catch (error) {
+                showNotice('登出失敗: ' + error.message, 'error');
+            }
+        });
+    }
+    
     // 購買積分按鈕
     const buyCreditsBtn = document.getElementById('buy-credits-btn');
     if (buyCreditsBtn) {
@@ -466,7 +466,7 @@ function initEventListeners() {
             
             // 關閉註冊模態框
             const signupModal = document.getElementById('signup-modal');
-                if (signupModal) {
+            if (signupModal) {
                 signupModal.classList.add('hidden');
                 signupModal.classList.remove('show');
             }
@@ -531,9 +531,9 @@ window.downloadImage = function(imageUrl, filename) {
     if (!user) {
         showNotice('請先登入以下載圖片', 'warning');
         // 自動跳出登入模態框
-            const loginModal = document.getElementById('login-modal');
-            if (loginModal) {
-                loginModal.classList.remove('hidden');
+        const loginModal = document.getElementById('login-modal');
+        if (loginModal) {
+            loginModal.classList.remove('hidden');
             loginModal.classList.add('show');
         }
         return;
@@ -554,14 +554,14 @@ window.shareImage = function(imageUrl) {
     if (!user) {
         showNotice('請先登入以分享圖片', 'warning');
         // 自動跳出登入模態框
-                const loginModal = document.getElementById('login-modal');
+        const loginModal = document.getElementById('login-modal');
         if (loginModal) {
             loginModal.classList.remove('hidden');
             loginModal.classList.add('show');
         }
-                return;
-            }
-            
+        return;
+    }
+    
     if (navigator.share) {
         navigator.share({
             title: 'AI 生成的圖片',
@@ -595,15 +595,15 @@ window.testFirebaseAuth = async function() {
         console.log('✅ 測試用戶已刪除');
         
         return true;
-            } catch (error) {
+    } catch (error) {
         console.error('❌ Firebase 認證測試失敗:', error.code, error.message);
         return false;
     }
 };
 
 // Firebase 認證狀態監聽器
-    firebase.auth().onAuthStateChanged(function(user) {
-        console.log('認證狀態變化:', user ? '已登入' : '已登出');
+firebase.auth().onAuthStateChanged(function(user) {
+    console.log('認證狀態變化:', user ? '已登入' : '已登出');
     if (user) {
         console.log('用戶信息:', user.email);
         currentUser = user;

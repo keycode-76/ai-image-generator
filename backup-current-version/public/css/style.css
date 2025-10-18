@@ -4,7 +4,7 @@
     --primary-color: #ff2828;
     --secondary-color: #e42121;
     --success-color: #ff3232;
-    --danger-color: #b42a00;
+    --danger-color: #33ff2c;
     --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     --transition: all 0.3s ease;
     
@@ -439,30 +439,6 @@ header {
     color: var(--text-color);
 }
 
-/* 用戶按鈕樣式 */
-.btn-user {
-    padding: 8px 20px;
-    border: none;
-    background: transparent;
-    color: var(--text-color);
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-user:hover {
-    color: var(--primary-color);
-    transform: translateY(-1px);
-}
-
-.btn-user i {
-    font-size: 16px;
-}
-
 
 .btn-premium {
     padding: 8px 20px;
@@ -485,6 +461,7 @@ header {
 
 /* 英雄區域樣式 */
 .hero {
+    /* background: linear-gradient(135deg, #6c63ff 0%, #4a45b1 100%); */
     /* background-color: var(--cn-color); */
     /* background-size: cover; */
     background-position: center;
@@ -492,8 +469,6 @@ header {
     color:  var(--text-color);
     text-align: center;
     padding: 40px 0;
-    padding-bottom: 0px;
-    margin-bottom: 1px;
 }
 
 .hero h2 {
@@ -633,8 +608,8 @@ header {
     background-image: url('../src/retro.jpg');
 }
 
-.style-card[data-style="playing-video-game"] .style-card-image {
-    background-image: url('../src/playing-video-game.jpg');
+.style-card[data-style="retro-pixel"] .style-card-image {
+    background-image: url('../src/pixel.jpg');
 }
 
 .style-card[data-style="cyberpunk"] .style-card-image {
@@ -1082,6 +1057,8 @@ footer .container {
     gap: 15px;
     margin-bottom: 20px;
     padding: 15px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
 }
 
 .user-avatar-section .user-avatar {
@@ -1658,215 +1635,6 @@ footer .container {
     .verification-input-group input {
         font-size: 18px;
         padding: 14px;
-    }
-}
-
-/* 新用戶面板樣式 */
-.user-panel-content {
-    background: var(--bg-color);
-    border-radius: 12px;
-    padding: 25px;
-    max-width: 400px;
-    width: 100%;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border: 1px solid var(--border-color);
-}
-
-.user-header {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.user-avatar-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex: 1;
-}
-
-.user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #e0e0e0;
-}
-
-.user-details {
-    flex: 1;
-}
-
-.user-name-section,
-.user-email-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 5px;
-}
-
-.user-name {
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--text-color);
-}
-
-.user-email {
-    font-size: 14px;
-    color: var(--text-secondary);
-}
-
-.edit-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.edit-btn:hover {
-    background: var(--hover-bg);
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-}
-
-.upgrade-btn {
-    background: var(--primary-color);
-    color: white;
-    width:100%;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 3px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.upgrade-btn:hover {
-    background: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-.divider {
-    height: 1px;
-    background: var(--border-color);
-    margin: 20px -25px;
-}
-
-.subscription-info {
-    margin-bottom: 20px;
-}
-
-.info-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.info-item:last-child {
-    border-bottom: none;
-}
-
-.info-label {
-    font-size: 14px;
-    color: var(--text-secondary);
-    font-weight: 500;
-}
-
-.plan-badge {
-    background: var(--bg-secondary);
-    color: var(--text-color);
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.plan-badge.premium {
-    background: var(--primary-color);
-    color: white;
-}
-
-.plan-badge.advanced {
-    background: var(--success-color);
-    color: white;
-}
-
-.count-info {
-    font-size: 14px;
-    color: var(--text-color);
-    font-weight: 500;
-}
-
-.user-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.action-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: left;
-}
-
-.action-btn:hover {
-    background: var(--hover-bg);
-    border-color: var(--primary-color);
-    color: var(--text-color);
-}
-
-.action-btn.danger {
-    color: var(--danger-color);
-    border-color: var(--danger-color);
-}
-
-.action-btn.danger:hover {
-    background: var(--danger-bg);
-    color: var(--danger-color);
-}
-
-.action-btn.logout {
-    color: var(--text-secondary);
-    border-color: var(--border-color);
-    margin-top: 10px;
-}
-
-.action-btn.logout:hover {
-    background: var(--hover-bg);
-    color: var(--text-color);
-}
-
-/* 響應式設計 */
-@media (max-width: 480px) {
-    .user-panel-content {
-        padding: 20px;
-        margin: 10px;
-    }
-    
-    .user-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .upgrade-btn {
-        width: 100%;
     }
 }
 

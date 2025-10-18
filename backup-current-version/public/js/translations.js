@@ -12,9 +12,8 @@ const translations = {
         
         
         // Hero Section
-        '歡迎來到 Genfeer 恐怖圖片生成器': 'Welcome to Genfeer Horror Image Generator',
-        '模擬經典恐怖、80s 恐怖、哥德恐怖、心理恐怖等各種恐怖類型': 'Simulate classic horror, 80s horror, gothic horror, psychological horror and various horror genres',
-        '快點開始生成圖片吧！': 'Start generating images now!',
+        '將您的想法轉化為精美圖像': "Welcome to Fred's Image Generator",
+        '免費、無限制、無需註冊，立即開始創作！': 'Tell Fred what photo you want, and Fred’ll do its best to provide it. Don’t worry, Fred’s very friendly. If something unexpected happens, it’s just because ___, and besides, Fred can only stay here, right? Let’s start generating pics!',
         
         // Generator Section
         '描述您想要的圖像': 'Describe the image you want',
@@ -26,15 +25,12 @@ const translations = {
         'Cyberpunk': 'Cyberpunk',
         '80\'s Slasher': '80\'s Slasher',
         '比例': 'Aspect Ratio',
-        '圖片尺寸': 'Image Size',
         '1:1 (正方形)': '1:1 (Square)',
         '16:9 (寬屏)': '16:9 (Widescreen)',
         '9:16 (垂直)': '9:16 (Portrait)',
         '4:3 (標準)': '4:3 (Standard)',
         '生成圖像': 'Generate Image',
         '正在生成您的圖像...': 'Generating your image...',
-        '圖片生成中...': 'Generating image...',
-        '點擊「生成圖片」開始創作': 'Click "Generate Image" to start creating',
         '生成的圖像': 'Generated Image',
         '下載': 'Download',
         '分享': 'Share',
@@ -104,9 +100,8 @@ const translations = {
         '升級方案': 'Plan de Actualización',
         
         // Hero Section
-        '歡迎來到 Genfeer 恐怖圖片生成器': 'Bienvenido al Generador de Imágenes de Terror Genfeer',
-        '模擬經典恐怖、80s 恐怖、哥德恐怖、心理恐怖等各種恐怖類型': 'Simula terror clásico, terror de los 80s, terror gótico, terror psicológico y varios géneros de terror',
-        '快點開始生成圖片吧！': '¡Comienza a generar imágenes ahora!',
+        '將您的想法轉化為精美圖像': 'Transforma tus ideas en hermosas imágenes',
+        '免費、無限制、無需註冊，立即開始創作！': '¡Gratis, ilimitado, sin registro requerido. Comienza a crear ahora!',
         
         // Generator Section
         '描述您想要的圖像': 'Describe la imagen que quieres',
@@ -118,15 +113,12 @@ const translations = {
         'Cyberpunk': 'Cyberpunk',
         '80\'s Slasher': 'Slasher 80\'s',
         '比例': 'Proporción',
-        '圖片尺寸': 'Tamaño de Imagen',
         '1:1 (正方形)': '1:1 (Cuadrado)',
         '16:9 (寬屏)': '16:9 (Panorámico)',
         '9:16 (垂直)': '9:16 (Retrato)',
         '4:3 (標準)': '4:3 (Estándar)',
         '生成圖像': 'Generar Imagen',
         '正在生成您的圖像...': 'Generando tu imagen...',
-        '圖片生成中...': 'Generando imagen...',
-        '點擊「生成圖片」開始創作': 'Haz clic en "Generar Imagen" para comenzar a crear',
         '生成的圖像': 'Imagen Generada',
         '下載': 'Descargar',
         '分享': 'Compartir',
@@ -196,9 +188,8 @@ const translations = {
         '升級方案': 'Upgrade-Plan',
         
         // Hero Section
-        '歡迎來到 Genfeer 恐怖圖片生成器': 'Willkommen beim Genfeer Horror-Bildgenerator',
-        '模擬經典恐怖、80s 恐怖、哥德恐怖、心理恐怖等各種恐怖類型': 'Simulieren Sie klassischen Horror, 80er Jahre Horror, gothischen Horror, psychologischen Horror und verschiedene Horror-Genres',
-        '快點開始生成圖片吧！': 'Beginnen Sie jetzt mit der Bildgenerierung!',
+        '將您的想法轉化為精美圖像': 'Verwandeln Sie Ihre Ideen in wunderschöne Bilder',
+        '免費、無限制、無需註冊，立即開始創作！': 'Kostenlos, unbegrenzt, keine Registrierung erforderlich. Jetzt mit dem Erstellen beginnen!',
         
         // Generator Section
         '描述您想要的圖像': 'Beschreiben Sie das gewünschte Bild',
@@ -210,15 +201,12 @@ const translations = {
         'Cyberpunk': 'Cyberpunk',
         '80\'s Slasher': '80\'er Slasher',
         '比例': 'Seitenverhältnis',
-        '圖片尺寸': 'Bildgröße',
         '1:1 (正方形)': '1:1 (Quadrat)',
         '16:9 (寬屏)': '16:9 (Breitbild)',
         '9:16 (垂直)': '9:16 (Hochformat)',
         '4:3 (標準)': '4:3 (Standard)',
         '生成圖像': 'Bild Generieren',
         '正在生成您的圖像...': 'Ihr Bild wird generiert...',
-        '圖片生成中...': 'Bild wird generiert...',
-        '點擊「生成圖片」開始創作': 'Klicken Sie auf "Bild Generieren" um zu beginnen',
         '生成的圖像': 'Generiertes Bild',
         '下載': 'Herunterladen',
         '分享': 'Teilen',
@@ -288,9 +276,8 @@ const translations = {
         '升級方案': 'アップグレードプラン',
         
         // Hero Section
-        '歡迎來到 Genfeer 恐怖圖片生成器': 'Genfeer ホラー画像ジェネレーターへようこそ',
-        '模擬經典恐怖、80s 恐怖、哥德恐怖、心理恐怖等各種恐怖類型': 'クラシックホラー、80年代ホラー、ゴシックホラー、心理ホラーなど様々なホラージャンルをシミュレート',
-        '快點開始生成圖片吧！': '今すぐ画像を生成しましょう！',
+        '將您的想法轉化為精美圖像': 'あなたのアイデアを美しい画像に変換',
+        '免費、無限制、無需註冊，立即開始創作！': '無料、無制限、登録不要。今すぐ作成を始めましょう！',
         
         // Generator Section
         '描述您想要的圖像': '欲しい画像を説明してください',
@@ -302,15 +289,12 @@ const translations = {
         'Cyberpunk': 'サイバーパンク',
         '80\'s Slasher': '80年代スラッシャー',
         '比例': 'アスペクト比',
-        '圖片尺寸': '画像サイズ',
         '1:1 (正方形)': '1:1 (正方形)',
         '16:9 (寬屏)': '16:9 (ワイドスクリーン)',
         '9:16 (垂直)': '9:16 (縦型)',
         '4:3 (標準)': '4:3 (標準)',
         '生成圖像': '画像生成',
         '正在生成您的圖像...': '画像を生成中...',
-        '圖片生成中...': '画像生成中...',
-        '點擊「生成圖片」開始創作': '「画像生成」をクリックして作成を開始',
         '生成的圖像': '生成された画像',
         '下載': 'ダウンロード',
         '分享': 'シェア',
@@ -380,9 +364,8 @@ const translations = {
         '升級方案': '升級方案',
         
         // Hero Section
-        '歡迎來到 Genfeer 恐怖圖片生成器': '歡迎來到 Genfeer 恐怖圖片生成器',
-        '模擬經典恐怖、80s 恐怖、哥德恐怖、心理恐怖等各種恐怖類型': '模擬經典恐怖、80s 恐怖、哥德恐怖、心理恐怖等各種恐怖類型',
-        '快點開始生成圖片吧！': '快點開始生成圖片吧！',
+        '將您的想法轉化為精美圖像': '將您的想法轉化為精美圖像',
+        '免費、無限制、無需註冊，立即開始創作！': '免費、無限制、無需註冊，立即開始創作！',
         
         // Generator Section
         '描述您想要的圖像': '描述您想要的圖像',
@@ -394,15 +377,12 @@ const translations = {
         'Cyberpunk': '賽博朋克',
         '80\'s Slasher': '80年代恐怖',
         '比例': '比例',
-        '圖片尺寸': '圖片尺寸',
         '1:1 (正方形)': '1:1 (正方形)',
         '16:9 (寬屏)': '16:9 (寬屏)',
         '9:16 (垂直)': '9:16 (垂直)',
         '4:3 (標準)': '4:3 (標準)',
         '生成圖像': '生成圖像',
         '正在生成您的圖像...': '正在生成您的圖像...',
-        '圖片生成中...': '圖片生成中...',
-        '點擊「生成圖片」開始創作': '點擊「生成圖片」開始創作',
         '生成的圖像': '生成的圖像',
         '下載': '下載',
         '分享': '分享',
