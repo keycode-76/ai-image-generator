@@ -1,12 +1,19 @@
 {
   "name": "genfeer-ai",
   "version": "1.0.0",
+  "type": "module",
   "description": "AI Image Generator - Static Site",
   "scripts": {
-    "dev": "vercel dev",
-    "deploy": "vercel --prod",
-    "build": "echo 'No build step for static site'",
-    "start": "vercel dev"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "next": "^15.5.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "stripe": "^14.6.0"
   },
   "devDependencies": {
     "vercel": "^28.0.0"

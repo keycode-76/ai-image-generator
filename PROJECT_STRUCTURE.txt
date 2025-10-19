@@ -1,73 +1,55 @@
-AI 圖片生成器專案架構
-====================
-
-根目錄
-├── config/                    # 配置檔案目錄
-├── functions/                 # Firebase Functions
-│   ├── env.example           # 環境變數範例
-│   ├── index.js              # Functions 主檔案
-│   ├── node_modules/         # Functions 依賴
-│   ├── package.json          # Functions 依賴配置
-│   └── package-lock.json     # 依賴鎖定檔案
-├── public/                    # 網站前端檔案
+genfeer/
+├── api/                          # Vercel Serverless Functions
+│   ├── create-checkout-session.js    # Stripe 結帳 API
+│   └── checkout-session.js           # 檢查結帳會話 API
+├── public/                       # 靜態網站檔案
+│   ├── index.html               # 主頁
+│   ├── pricing.html             # 訂閱方案頁面
+│   ├── success.html             # 支付成功頁面
+│   ├── cancel.html              # 支付取消頁面
+│   ├── 404.html                 # 404 錯誤頁面
+│   ├── backup.html              # 備份頁面
 │   ├── css/
-│   │   └── style.css         # 主要樣式檔案
+│   │   └── style.css            # 主要樣式檔案
 │   ├── js/
-│   │   ├── script.js         # 主要 JavaScript 邏輯
-│   │   └── translations.js    # 多語言翻譯
-│   ├── src/                  # 圖片資源
+│   │   ├── script-clean.js      # 主要 JavaScript 邏輯
+│   │   └── translations.js      # 多語言翻譯檔案
+│   ├── src/                     # 圖片資源
 │   │   ├── 01-hero.jpg
 │   │   ├── 80s slasher.jpg
-│   │   ├── cyberpunk.jpg
 │   │   ├── pixel.jpg
-│   │   └── retro.jpg
-│   ├── 404.html              # 404 錯誤頁面
-│   ├── cancel.html           # 取消頁面
-│   ├── index.html            # 主頁面
-│   ├── pricing.html          # 價格頁面
-│   ├── success.html          # 成功頁面
-│   ├── favicon.ico           # 網站圖標
-│   └── logo.png              # Logo 圖片
-├── scripts/                  # 腳本目錄
-│   └── check-env.js          # 環境檢查腳本
-├── node_modules/             # 根目錄依賴
-├── config.example.js         # 配置範例檔案
-├── DATABASE_DESIGN.md        # 資料庫設計文件
-├── DEPLOYMENT.md             # 部署說明文件
-├── IMAGE_CONFIG.md          # 圖片配置說明
-├── INTEGRATION_COMPLETE.md   # 整合完成說明
-├── README.md                 # 專案說明
-├── SETUP.md                  # 設定指南
-├── deploy.bat                # Windows 部署腳本
-├── deploy.sh                 # Linux/Mac 部署腳本
-├── firebase.json             # Firebase 配置
-├── package.json              # 專案依賴配置
-├── server.js                 # 本地伺服器
-├── start.bat                 # Windows 啟動腳本
-├── start.sh                  # Linux/Mac 啟動腳本
-└── test.json                 # 測試檔案
+│   │   ├── playing-video-game.jpg
+│   │   ├── retro.jpg
+│   │   └── Y2K-dreamy.jpg
+│   ├── logo.png                 # 網站 Logo
+│   └── favicon.ico              # 網站圖示
+├── node_modules/                # Node.js 依賴套件
+├── config.example.js            # 配置範例檔案
+├── current-users.json           # 當前用戶資料
+├── users.json                   # 用戶資料
+├── package.json                 # Node.js 專案配置
+├── package-lock.json           # 依賴版本鎖定
+├── vercel.json                  # Vercel 部署配置
+├── .vercelignore                # Vercel 忽略檔案
+├── .env                         # 環境變數 (本地開發用)
+├── vercel-env-vars.env          # Vercel 環境變數範例
+├── env-variables.txt            # 環境變數說明
+├── deploy-vercel.bat            # Windows 部署腳本
+├── deploy-vercel.sh             # Linux/Mac 部署腳本
+├── set-env-vars.bat             # Windows 環境變數設定腳本
+├── PROJECT_STRUCTURE.txt       # 專案結構說明 (本檔案)
+├── README.md                    # 專案說明文件
+├── SETUP.md                     # 設定說明
+├── DEPLOYMENT.md                # 部署說明
+├── VERCEL_MIGRATION.md          # Vercel 遷移說明
+├── MIGRATION_CHECKLIST.md       # 遷移檢查清單
+├── IMAGE_CONFIG.md              # 圖片配置說明
+└── INTEGRATION_COMPLETE.md      # 整合完成說明
 
-主要功能模組
-============
-1. 前端 (public/)
-   - 響應式網頁設計
-   - 多語言支援
-   - Firebase 認證整合
-   - 圖片生成介面
-
-2. 後端 (functions/)
-   - Firebase Cloud Functions
-   - 圖片生成 API
-   - Email 驗證功能
-   - Stripe 支付整合
-
-3. 配置管理
-   - 環境變數管理
-   - Firebase 配置
-   - 部署腳本
-
-4. 文檔
-   - 設定指南
-   - 部署說明
-   - 資料庫設計
-
+專案類型: 靜態 HTML + Vercel Serverless Functions
+部署平台: Vercel
+前端: HTML + CSS + JavaScript
+後端: Vercel API Routes (Node.js)
+資料庫: Firebase Firestore
+支付: Stripe
+圖片生成: Pollinations.ai API

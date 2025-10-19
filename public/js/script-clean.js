@@ -572,7 +572,7 @@ async function generateImage() {
     // if (!checkGenerationLimit()) {
     //     showNotice('您已達到本月生成限制，請升級方案以繼續使用', 'warning');
     //     // 跳轉到升級頁面
-    //     window.location.href = 'pricing.html';
+    //     window.location.href = 'pricing';
     //     return;
     // }
     
@@ -1062,14 +1062,6 @@ function initEventListeners() {
         styleCards[0].classList.add('selected');
     }
     
-    // 升級方案按鈕
-    const payButton = document.getElementById('pay-button');
-    if (payButton) {
-        payButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = 'pricing.html';
-        });
-    }
     
     // 語言選擇
     const languageSelect = document.getElementById('language-select');
@@ -1107,8 +1099,21 @@ function initEventListeners() {
     if (userBuyCreditsBtn) {
         userBuyCreditsBtn.addEventListener('click', function() {
             console.log('用戶面板升級方案按鈕被點擊');
-            window.location.href = 'pricing.html';
+            window.location.href = 'pricing';
         });
+    }
+    
+    // 升級方案按鈕
+    const payButton = document.getElementById('pay-button');
+    if (payButton) {
+        payButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log('升級方案按鈕被點擊');
+            window.location.href = 'pricing';
+        });
+        console.log('✅ 升級方案按鈕事件監聽器已設置');
+    } else {
+        console.log('❌ 找不到升級方案按鈕');
     }
 }
 

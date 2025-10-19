@@ -45,3 +45,4 @@ yarn-error.log*
 # 暫存檔案
 *.tmp
 *.temp
+.vercel

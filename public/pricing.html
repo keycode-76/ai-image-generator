@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href="https://www.genfeer.ai/">
+            <a href="https://genfeer.vercel.app/">
                 <img src="logo.png" alt="GenHorror.ai" class="logo-image">
             </a>
         </div>
@@ -24,8 +24,8 @@
         </button>
         
         <nav class="nav-links" id="navLinks">
-            <a href="https://www.genfeer.ai/" data-translate="首頁">首頁</a>
-            <a href="https://www.genfeer.ai/#gallery" data-translate="畫廊">畫廊</a>
+            <a href="https://genfeer.vercel.app/" data-translate="首頁">首頁</a>
+            <a href="https://genfeer.vercel.app/#gallery" data-translate="畫廊">畫廊</a>
             
             <select class="language-select" id="language-select">
                 <option value="en" data-text="English">🇺🇸 English</option>
@@ -299,7 +299,7 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         // Stripe 配置
-        const stripe = Stripe('pk_test_51234567890abcdef');
+        const stripe = Stripe('pk_test_51SI7Te2KKjbc3s12LNonNzqt79F7u4hwYXpNCiGeW0r9tU5GxzLqvzS7pTCo1KhpfpBeEe7x6kjPD8vznJmhpnWe00fIr5Juil');
         
         // 訂閱方案函數
         async function subscribePlan(planType) {
@@ -348,7 +348,6 @@
                 
                 if (result.sessionId) {
                     // 重定向到 Stripe Checkout
-                    const stripe = Stripe('pk_test_...'); // 使用您的 Stripe 公鑰
                     const { error } = await stripe.redirectToCheckout({
                         sessionId: result.sessionId
                     });
@@ -477,6 +476,6 @@
     </div>
 
     <script src="js/translations.js"></script>
-    <script src="js/script-clean.js?v=1"></script>
+    <script src="js/script-clean.js?v=2"></script>
 </body>
 </html>
