@@ -329,15 +329,33 @@
                         throw new Error('無效的方案類型');
                 }
 
-                // 調用 Firebase Function 創建 Stripe Checkout Session
-                const createCheckoutSession = firebase.functions().httpsCallable('createCheckoutSessionV2');
-                const result = await createCheckoutSession({
-                    planType: planType,
-                    priceData: priceData
+                // 調用 Vercel API Route 創建 Stripe Checkout Session
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        plan: planType
+                    })
                 });
 
-                if (result.data && result.data.url) {
-                    window.location.href = result.data.url;
+                if (!response.ok) {
+                    throw new Error('API 請求失敗');
+                }
+
+                const result = await response.json();
+                
+                if (result.sessionId) {
+                    // 重定向到 Stripe Checkout
+                    const stripe = Stripe('pk_test_...'); // 使用您的 Stripe 公鑰
+                    const { error } = await stripe.redirectToCheckout({
+                        sessionId: result.sessionId
+                    });
+                    
+                    if (error) {
+                        throw new Error(error.message);
+                    }
                 } else {
                     throw new Error('無法獲取付款頁面連結');
                 }

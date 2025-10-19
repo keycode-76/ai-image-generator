@@ -1,0 +1,22 @@
+# 忽略不需要的文件
+node_modules/
+.git/
+.env.local
+.env
+*.log
+.DS_Store
+Thumbs.db
+
+# 忽略備份文件
+backup-current-version/
+second-version-files/
+
+# 忽略 Firebase 相關文件
+firebase.json
+.firebaserc
+functions/
+
+# 忽略部署腳本
+deploy.bat
+deploy.sh
+start.bat

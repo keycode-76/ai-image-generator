@@ -9,11 +9,15 @@ let userGenerationData = null; // 用戶生成數據
 
 // 風格映射 - 增強提示詞
 const STYLE_MAP = {
-    'retro': 'Dark outdoor nighttime setting, Create a found-footage style photograph that authentically mimics an old digital from the early 2000s era . The image quality should feel like genuine paranormal documentation with heavy VHS compression artifacts, visible horizontal scan lines, extreme pixelation, color banding, digital color shift, and grainy digital noise throughout. The overall aesthetic is deliberately degraded and low-fidelity, capturing that distinctive early internet horror era look with authentic analog-to-digital decay',
-    'playing-video-game': " is the SUBJECT, A nostalgic found-footage photograph shot on vintage 35mm film from the 2000s era. Dimly-lit basement room with concrete floors. An aged CRT television displaying crystal clear, highly detailed retro video game graphics of [SUBJECT]game featuring [SUBJECT] as the protagonist, positioned extremely close beside [SUBJECT]'s head. Full-body shot of [SUBJECT] sitting cross-legged on the floor, turned directly toward the camera, eyes looking straight at the viewer, showing direct eye contact while holding a game controller. The TV screen shows the game protagonist that matches [SUBJECT]'s appearance. Warm, muted lighting with heavy grain, color cast. Vintage electronics and worn surfaces. Film texture capturing basement gaming culture nostalgia.",
-    'cyberpunk': 'Cyberpunk horror scene, neon lighting, masked figure before CRT TV, 1980s analog room, film grain',
-    'slasher': 'Vintage slasher film poster, pale mask, dim living room, CRT television glow, 1970s horror aesthetic'
+    'retro': 'Dark outdoor nighttime setting, Create a found-footage style photograph that authentically mimics an old digital from the early 2000s era. The image quality should feel like genuine paranormal documentation with heavy VHS compression artifacts, visible horizontal scan lines, extreme pixelation, color banding, digital color shift, and grainy digital noise throughout. The overall aesthetic is deliberately degraded and low-fidelity, capturing that distinctive early internet horror era look with authentic analog-to-digital decay featuring @SUBJECT.',
+
+    'playing-video-game': '@SUBJECT is the protagonist. A nostalgic found-footage photograph shot on vintage 35mm film from the 2000s era. Dimly-lit basement room with concrete floors. An aged CRT television displaying crystal clear, highly detailed retro video game graphics of @SUBJECT as the protagonist, positioned extremely close beside @SUBJECT\'s head. Full-body shot of @SUBJECT sitting cross-legged on the floor, turned directly toward the camera, eyes looking straight at the viewer, showing direct eye contact while holding a game controller. The TV screen shows the game protagonist that matches @SUBJECT\'s appearance. Warm, muted lighting with heavy grain and color cast. Vintage electronics and worn surfaces. Film texture capturing basement gaming culture nostalgia.',
+
+    'Y2K-dreamy': '@SUBJECT lounging on glossy pink satin bedding, holding a vintage 90s corded phone in a daydreamy pose. Long black hair with butterfly clips, layered gold necklaces, chunky rings. Soft ambient lighting in cozy room with 90s posters, magazines, and popcorn bowl. Grainy vintage photo quality with late-night vibe. Mysterious masked figure subtly illuminated in shadowy doorway background, adding surreal, cinematic mood to the dreamy scene.',
+
+    'slasher': '@SUBJECT in a 70s kitchen with vintage Halloween decor. Holding a white 90s cordless phone in a thoughtful pose. Brown curly hair with black clips, delicate gold jewelry and chunky rings, dark glamorous makeup with lipgloss. Retro TV showing Halloweentown in background. Counter has pumpkin carving tools, jack-o\'-lanterns, newspaper, and popcorn bowl. 70s wood cabinetry in greens and browns with 80s Halloween decor. Grainy 70s film style, dimly lit by lamp at night. Ghostface killer dimly visible in doorway behind @SUBJECT, staring. Keep @SUBJECT\'s facial features unchanged.'
 };
+
 
 // 要生成的圖片數量
 const IMAGES_TO_GENERATE = 1; // 可以調整生成的圖片數量 (1-4 張)
@@ -625,6 +629,12 @@ function displayResult(images, prompt, style) {
         img.loading = 'lazy';
         img.src = images[0];
         
+        // 設定圖片樣式以適應不同尺寸比例
+        const dimensions = getImageDimensions();
+        img.style.maxWidth = '100%';
+        img.style.height = 'auto';
+        img.style.objectFit = 'contain';
+        
         // 使用備用圖片加載機制
         loadImageWithFallback(img, images[0]);
         
@@ -657,21 +667,41 @@ function updatePreviewActions(imageUrl, prompt) {
     }
 }
 
+// 獲取圖片尺寸
+function getImageDimensions() {
+    const aspectRatioSelect = document.getElementById('aspect-ratio');
+    const aspectRatio = aspectRatioSelect ? aspectRatioSelect.value : '1:1';
+    
+    // 根據比例設定尺寸
+    const dimensions = {
+        '1:1': { width: 512, height: 512 },
+        '16:9': { width: 768, height: 432 },
+        '9:16': { width: 432, height: 768 },
+        '4:3': { width: 640, height: 480 }
+    };
+    
+    return dimensions[aspectRatio] || dimensions['1:1'];
+}
+
 // 備用方案 - 使用 Pollinations API
 async function generateImagesDirectly(prompt, style) {
     try {
         console.log('使用備用方案生成圖片...');
         
         const selectedStyle = STYLE_MAP[style] || 'dark mechanical';
-        const enhancedPrompt = `${prompt}, ${selectedStyle}, high quality, detailed, artwork`;
+        const enhancedPrompt = `@SUBJECT = ${prompt}, ${selectedStyle}`; // high quality, detailed, artwork
         const encodedPrompt = encodeURIComponent(enhancedPrompt);
+        
+        // 獲取選擇的圖片尺寸
+        const dimensions = getImageDimensions();
+        console.log('使用圖片尺寸:', dimensions);
         
         // 生成多張圖片 URL
         const timestamp = Date.now();
         const imageUrls = [];
         for (let i = 1; i <= IMAGES_TO_GENERATE; i++) {
             imageUrls.push(
-                `https://image.pollinations.ai/prompt/${encodedPrompt}?width=512&height=512&seed=${timestamp + i}&nologo=true`
+                `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${dimensions.width}&height=${dimensions.height}&seed=${timestamp + i}&nologo=true`
             );
         }
         
@@ -692,15 +722,38 @@ async function generateImagesDirectly(prompt, style) {
 // 圖片加載備用機制
 function loadImageWithFallback(imgElement, imageUrl) {
     let errorHandled = false;
+    let timeoutHandled = false;
+    
+    // 設置 2 分鐘超時檢測
+    const timeoutId = setTimeout(() => {
+        if (!errorHandled && !timeoutHandled) {
+            timeoutHandled = true;
+            console.log('超時兩分鐘');
+            console.error('圖片加載超時（2分鐘），使用備用圖片:', imageUrl);
+            // 使用備用的 SVG 圖片
+            imgElement.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><rect width="512" height="512" fill="#1a1a2e"/><text x="256" y="256" font-family="Arial" font-size="14" fill="white" text-anchor="middle">圖片生成超時</text><text x="256" y="280" font-family="Arial" font-size="12" fill="#ccc" text-anchor="middle">請重試或檢查網絡</text></svg>';
+            
+            // 停止 Circle Loading
+            stopCountdown();
+            
+            // 移除事件監聽器避免無限循環
+            imgElement.onerror = null;
+            imgElement.onload = null;
+        }
+    }, 120000); // 2 分鐘 = 120,000 毫秒
     
     imgElement.onload = function() {
-        console.log('圖片加載成功:', imageUrl);
-        stopCountdown();
+        if (!errorHandled && !timeoutHandled) {
+            clearTimeout(timeoutId); // 清除超時計時器
+            console.log('圖片加載成功:', imageUrl);
+            stopCountdown();
+        }
     };
     
     imgElement.onerror = function() {
-        if (!errorHandled) {
+        if (!errorHandled && !timeoutHandled) {
             errorHandled = true;
+            clearTimeout(timeoutId); // 清除超時計時器
             console.error('圖片加載失敗，使用備用圖片:', imageUrl);
             // 使用備用的 SVG 圖片
             imgElement.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512"><rect width="512" height="512" fill="#1a1a2e"/><text x="256" y="256" font-family="Arial" font-size="14" fill="white" text-anchor="middle">圖片生成失敗</text><text x="256" y="280" font-family="Arial" font-size="12" fill="#ccc" text-anchor="middle">請重試或檢查網絡</text></svg>';
@@ -1025,6 +1078,14 @@ function initEventListeners() {
             language = this.value;
             localStorage.setItem('language', language);
             translatePage();
+        });
+    }
+    
+    // 圖片尺寸選擇
+    const aspectRatioSelect = document.getElementById('aspect-ratio');
+    if (aspectRatioSelect) {
+        aspectRatioSelect.addEventListener('change', function() {
+            console.log('圖片尺寸已更改為:', this.value);
         });
     }
     
